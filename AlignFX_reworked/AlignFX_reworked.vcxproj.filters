@@ -16,6 +16,12 @@
     <Filter Include="Header Files\Utils">
       <UniqueIdentifier>{53db901c-b415-4265-a767-adecc77c357b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\MatchingMethods">
+      <UniqueIdentifier>{c9acd4e3-e6be-45fb-810c-426a6cb61924}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Models">
+      <UniqueIdentifier>{42ed8fe8-844d-4961-a35b-c8174c3fa2c9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -25,6 +31,24 @@
   <ItemGroup>
     <ClInclude Include="PreProcessing.hpp">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="AlgebricOperations.hpp">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="SimilarityMethods.hpp">
+      <Filter>Header Files\MatchingMethods</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassInstanceMapping.hpp">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Mapping.hpp">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="MappingRelationship.hpp">
+      <Filter>Header Files\Models</Filter>
+    </ClInclude>
+    <ClInclude Include="Includes.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

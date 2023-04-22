@@ -1,29 +1,24 @@
 #include <iostream>
+#include "ClassInstanceMapping.hpp"
 #include "PreProcessing.hpp"
+#include "AlgebricOperations.hpp"
+#include "Mapping.hpp"
+#include "SimilarityMethods.hpp"
+
 
 int main() {
-	std::vector<std::string> test = { "Hello-'_ /&1","HIIII","Hello-'_'1","Hello-'_ /&1","ss"};
-	std::cout << "Before" << "\n";
-	for (int i = 0; i < test.size(); i++)
-	{
-		std::cout <<test[i] << "\n";
+	std::vector<std::string> A { "BMW","Merco","Willy","idk" };
+	std::vector<std::string> B { "BMW","Alpha","Willy","idk","Delta" };
+	std::string clA = "car";
+	std::string clB = "wat";
 
-	}
-	std::cout << "After" << "\n";
-	preProcessArrayString(test);
-	for (int i = 0; i < test.size(); i++)
-	{
-		std::cout << test[i] << "\n";
+	ClassInstanceMapping cl1;
+	cl1.setConcept(clA);
+	cl1.setInstances(A);
+	//ClassInstanceMapping cl2(clB, B);
+	std::vector<ClassInstanceMapping> cls1{cl1};
+	//std::vector<ClassInstanceMapping> cls2{cl2};
+	//std::vector<Mapping> mps = jaccardSimilarity(cls1, cls2);
 
-	}
-	std::cout << "After dup" << "\n";
-
-	removeDuplicates(test);
-
-	for (int i = 0; i < test.size(); i++)
-	{
-		std::cout << test[i] << "\n";
-
-	}
 	return 0;
 }

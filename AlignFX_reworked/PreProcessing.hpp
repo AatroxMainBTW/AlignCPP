@@ -5,6 +5,8 @@
 #include <vector>
 #include <algorithm>
 
+
+
 void removeAllDigits(std::string & strIn) {
 	for (int i = 0; i < strIn.length(); i++) {
 		if (isdigit(strIn[i])) {

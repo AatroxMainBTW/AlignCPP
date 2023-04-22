@@ -130,7 +130,13 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="AlgebricOperations.hpp" />
+    <ClInclude Include="ClassInstanceMapping.hpp" />
+    <ClInclude Include="Includes.hpp" />
+    <ClInclude Include="Mapping.hpp" />
+    <ClInclude Include="MappingRelationship.hpp" />
     <ClInclude Include="PreProcessing.hpp" />
+    <ClInclude Include="SimilarityMethods.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
