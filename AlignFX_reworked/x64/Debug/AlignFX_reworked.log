@@ -1,2 +1,3 @@
-﻿  main.cpp
-C:\Users\Fouzi\source\repos\AlignCPP\AlignFX_reworked\main.cpp(3,10): fatal  error C1083: Cannot open include file: 'imgui.h': No such file or directory
+﻿  gui.cpp
+C:\Users\Fouzi\source\repos\AlignCPP\AlignFX_reworked\Project_app\gui.cpp(75,22): warning C4244: 'return': conversion from 'LRESULT' to 'long', possible loss of data
+  AlignFX_reworked.vcxproj -> C:\Users\Fouzi\source\repos\AlignCPP\AlignFX_reworked\x64\Debug\AlignFX_reworked.exe
