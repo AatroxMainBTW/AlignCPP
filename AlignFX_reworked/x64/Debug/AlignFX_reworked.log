@@ -1,3 +1,4 @@
 ﻿  gui.cpp
 C:\Users\Fouzi\source\repos\AlignCPP\AlignFX_reworked\Project_app\gui.cpp(75,22): warning C4244: 'return': conversion from 'LRESULT' to 'long', possible loss of data
+C:\Users\Fouzi\source\repos\AlignCPP\AlignFX_reworked\Project_app\gui.cpp(355,9): warning C4101: 'my_tool_active': unreferenced local variable
   AlignFX_reworked.vcxproj -> C:\Users\Fouzi\source\repos\AlignCPP\AlignFX_reworked\x64\Debug\AlignFX_reworked.exe

@@ -79,6 +79,9 @@ void SetupImGuiStyle()
 	 
 	ImGuiStyle* style = &ImGui::GetStyle();
 	ImVec4* colors = style->Colors;
+	
+	
+
 
 	style->Alpha = 1.0f;
 	style->DisabledAlpha = 0.6000000238418579f;
@@ -333,6 +336,7 @@ void gui::EndRender() noexcept
 
 void gui::Render() noexcept
 {
+
 	ImGui::SetNextWindowPos({ 0, 0 });
 	ImGui::SetNextWindowSize({ WIDTH, HEIGHT });
 	ImGui::Begin(
@@ -341,10 +345,25 @@ void gui::Render() noexcept
 		ImGuiWindowFlags_NoResize |
 		ImGuiWindowFlags_NoSavedSettings |
 		ImGuiWindowFlags_NoCollapse |
-		ImGuiWindowFlags_NoMove
+		ImGuiWindowFlags_NoMove |
+		ImGuiWindowFlags_MenuBar
 	);
-	ImGui::Text("Health car");
-	ImGui::Button("Test");
+	if (ImGui::BeginMenuBar())
+	{
+		if (ImGui::BeginMenu("File"))
+		{
+			bool my_tool_active;
+			if (ImGui::MenuItem("Open ontolgy 1", "Ctrl+O+1")) {				
+			}
+			if (ImGui::MenuItem("Open ontolgy 2", "Ctrl+O+2")) {}
+			if (ImGui::MenuItem("Save", "Ctrl+S")) { /* Do stuff */ }
+			if (ImGui::MenuItem("Close", "Ctrl+W")) { isRunning = false; }
+			ImGui::EndMenu();
+		}
+		ImGui::EndMenuBar();
+	}
+
+
 	
 
 	ImGui::End();

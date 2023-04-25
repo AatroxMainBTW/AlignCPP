@@ -157,6 +157,9 @@
     <ClInclude Include="Projects_hpps\SimilarityMethods.hpp" />
     <ClInclude Include="Project_app\gui.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Font Include="Project_app\ath.ttf" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
