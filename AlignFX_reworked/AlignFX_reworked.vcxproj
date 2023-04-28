@@ -158,7 +158,10 @@
     <ClInclude Include="Project_app\gui.h" />
   </ItemGroup>
   <ItemGroup>
-    <Font Include="Project_app\ath.ttf" />
+    <Font Include="..\..\..\..\Downloads\avenue_2\Avenue.otf" />
+    <Font Include="Assets\Fonts\ath.ttf" />
+    <Font Include="Assets\Fonts\Avenue.otf" />
+    <Font Include="Assets\Fonts\SegoeUI.ttf" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

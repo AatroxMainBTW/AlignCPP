@@ -3,6 +3,7 @@
 #include "../imgui/imgui.h"
 #include "../imgui/imgui_impl_dx9.h"
 #include "../imgui/imgui_impl_win32.h"
+#define IMGUI_DEMO_MARKER(section)  do { if (GImGuiDemoMarkerCallback != NULL) GImGuiDemoMarkerCallback(__FILE__, __LINE__, section, GImGuiDemoMarkerCallbackUserData); } while (0)
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(
 	HWND window,
@@ -10,6 +11,27 @@ extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(
 	WPARAM wideParameter,
 	LPARAM longParameter
 );
+
+bool show_ontology_selection_window = true;
+bool show_Load_First_Ontology_Menu = true;
+bool show_calculation_tool_Menu = true;
+bool tab_bar_flags = true;
+
+static bool levenstein = false;
+static bool jaro = false;
+static bool jaccard = false;
+static bool paris = false;
+static bool pi = false;
+static bool pc = false;
+static bool probamap = false;
+static bool summation = false;
+
+
+
+
+
+ImGuiWindowFlags window_flags = 0;
+
 
  long __stdcall WindowProcess(
 	HWND window,
@@ -167,6 +189,219 @@ void SetupImGuiStyle()
 	colors[ImGuiCol_NavWindowingHighlight] = ImVec4(1.0f, 1.0f, 1.0f, 0.699999988079071f);
 	colors[ImGuiCol_NavWindowingDimBg] = ImVec4(0.800000011920929f, 0.800000011920929f, 0.800000011920929f, 0.2000000029802322f);
 	colors[ImGuiCol_ModalWindowDimBg] = ImVec4(0.800000011920929f, 0.800000011920929f, 0.800000011920929f, 0.3499999940395355f);
+
+	ImGuiIO& io = ImGui::GetIO();
+	io.Fonts->AddFontFromFileTTF("Assets/Fonts/SegoeUI.ttf", 16.0f, NULL);
+}
+
+
+void ShowHelperWindow(bool* p_open) {
+
+
+}
+
+void OntologySelectionTool(bool* p_open)
+{
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	
+	ImGui::SetNextWindowSize(ImVec2(520.000f, 280.000f), ImGuiCond_FirstUseEver);
+
+	ImGui::Begin("Ontology Selection Tool", p_open,
+		ImGuiWindowFlags_MenuBar |
+		ImGuiWindowFlags_NoResize);
+	if (ImGui::BeginMenuBar())
+	{
+		if (ImGui::BeginMenu("File"))
+		{
+			if (ImGui::MenuItem("Load First Ontology")) {
+
+			}
+			if (ImGui::MenuItem("Load Second Ontology")) {
+
+			}
+			ImGui::EndMenu();
+		}
+		if (ImGui::BeginMenu("Exit"))
+		{
+			
+			ImGui::EndMenu();
+		}
+	
+		ImGui::EndMenuBar();
+		ImGui::Spacing();
+		ImGui::SetNextItemWidth(150.000f);
+		ImGui::Text("Yago");
+		if (ImGui::BeginTable("Yago", 4, NULL))
+		{
+		
+			ImGui::TableSetupColumn("Number of classes");
+			ImGui::TableSetupColumn("Number of instances");
+			ImGui::TableSetupColumn("Total of axioms");
+			ImGui::TableSetupColumn("Logical axioms");
+			ImGui::TableHeadersRow();
+			ImGui::TableNextRow();
+			ImGui::TableSetColumnIndex(0);
+			ImGui::Text("%d", 2000);
+			ImGui::TableSetColumnIndex(1);
+			ImGui::Text("%d", 4000);
+			ImGui::TableSetColumnIndex(2);
+			ImGui::Text("%d", 200);
+			ImGui::TableSetColumnIndex(3);
+			ImGui::Text("%d", 1000);
+		
+			ImGui::EndTable();
+		}
+	
+		ImGui::SetNextItemWidth(150.000f);
+		ImGui::Text("Dbpedia");
+		if (ImGui::BeginTable("Dbpedia", 4, NULL))
+		{
+
+			ImGui::TableSetupColumn("Number of classes");
+			ImGui::TableSetupColumn("Number of instances");
+			ImGui::TableSetupColumn("Total of axioms");
+			ImGui::TableSetupColumn("Logical axioms");
+			ImGui::TableHeadersRow();
+			ImGui::TableNextRow();
+			ImGui::TableSetColumnIndex(0);
+			ImGui::Text("%d", 2000);
+			ImGui::TableSetColumnIndex(1);
+			ImGui::Text("%d", 4000);
+			ImGui::TableSetColumnIndex(2);
+			ImGui::Text("%d", 200);
+			ImGui::TableSetColumnIndex(3);
+			ImGui::Text("%d", 1000);
+			ImGui::EndTable();
+			
+		}
+	
+
+	ImGui::Text("Application average %.3f ms/frame (%.1f FPS)", 1000.0f / io.Framerate, io.Framerate);
+	ImGui::End();
+}
+}
+void SimilarityCalculationTool(bool* p_open) {
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	ImVec2 center = ImGui::GetMainViewport()->GetCenter();
+
+	ImGui::SetNextWindowPos(center, ImGuiCond_Appearing, ImVec2(0.5f, 0.5f));
+	ImGui::SetNextWindowSize(ImVec2(520.000f, 280.000f), ImGuiCond_FirstUseEver);
+
+	ImGui::Begin("Smilarity Calculation Tool", p_open,
+		ImGuiWindowFlags_MenuBar |
+		ImGuiWindowFlags_NoResize);
+	
+	static ImVector<int> active_tabs;
+	static int next_tab_id = 0;
+	active_tabs.push_back(next_tab_id++);
+	
+	if (ImGui::BeginMenuBar())
+	{
+		if (ImGui::BeginMenu("Options"))
+		{
+			if (ImGui::MenuItem("Levenstein",0, &levenstein)) {
+
+			}
+			if (ImGui::MenuItem("Jaro", 0, &jaro)) {
+
+			}
+			if (ImGui::MenuItem("Jaccard", 0, &jaccard)) {
+
+			}
+			if (ImGui::MenuItem("Paris", 0, &paris)) {
+
+			}
+			if (ImGui::MenuItem("Pi", 0, &pi)) {
+
+			}
+			if (ImGui::MenuItem("Pc", 0, &pc)) {
+
+			}
+			if (ImGui::MenuItem("ProbaMap", 0, &probamap)) {
+
+			}
+			if (ImGui::MenuItem("Summation", 0, &summation)) {
+
+			}
+			ImGui::EndMenu();
+		}
+
+		ImGui::EndMenuBar();
+	if (ImGui::BeginTabBar("TABBAR", tab_bar_flags))
+	{	
+			bool open = true;
+		
+			if (ImGui::BeginTabItem("leveinstein", &open, ImGuiTabItemFlags_None))
+			{
+				ImGui::Text("leveinstein");
+				if (ImGui::BeginTable("leveinstein", 4, NULL))
+				{
+
+					ImGui::TableSetupColumn("Number of classes");
+					ImGui::TableSetupColumn("Number of instances");
+					ImGui::TableSetupColumn("Total of axioms");
+					ImGui::TableSetupColumn("Logical axioms");
+
+					ImGui::TableHeadersRow();
+					ImGui::TableNextRow();
+					ImGui::TableSetColumnIndex(0);
+					ImGui::Text("%d", 2000);
+					ImGui::TableSetColumnIndex(1);
+					ImGui::Text("%d", 4000);
+					ImGui::TableSetColumnIndex(2);
+					ImGui::Text("%d", 200);
+					ImGui::TableSetColumnIndex(3);
+					ImGui::Text("%d", 1000);
+
+					ImGui::EndTable();
+				}
+
+				ImGui::EndTabItem();
+			}
+			if (ImGui::BeginTabItem("Jaro", &open, ImGuiTabItemFlags_None))
+			{
+				ImGui::Text("This is the Jaro tab!");
+				ImGui::EndTabItem();
+			}
+			if (ImGui::BeginTabItem("Jaccard", &open, ImGuiTabItemFlags_None))
+			{
+				ImGui::Text("This is the Jaccard tab!");
+				ImGui::EndTabItem();
+			}
+			if (ImGui::BeginTabItem("Paris", &open, ImGuiTabItemFlags_None))
+			{
+				ImGui::Text("This is the Paris tab!");
+				ImGui::EndTabItem();
+			}
+			if (ImGui::BeginTabItem("PI", &open, ImGuiTabItemFlags_None))
+			{
+				ImGui::Text("This is the PI tab!");
+				ImGui::EndTabItem();
+			}
+			if (ImGui::BeginTabItem("PC", &open, ImGuiTabItemFlags_None))
+			{
+				ImGui::Text("This is the PC tab!");
+				ImGui::EndTabItem();
+			}
+
+			if (ImGui::BeginTabItem("ProbaMap", &open, ImGuiTabItemFlags_None))
+			{
+				ImGui::Text("This is the ProbaMap tab!");
+				ImGui::EndTabItem();
+			}
+
+			if (ImGui::BeginTabItem("Summation", &open, ImGuiTabItemFlags_None))
+			{
+				ImGui::Text("This is the Summation tab!");
+				ImGui::EndTabItem();
+			}
+
+		ImGui::EndTabBar();
+
+
+	ImGui::End();
+}
+}
 }
 
 
@@ -192,15 +427,12 @@ void gui::CreateHWindow(const char* windowName) noexcept
 		0,
 		"class001",
 		windowName,
-		WS_POPUP,
+		WS_OVERLAPPEDWINDOW,
 		100,
 		100,
 		WIDTH,
 		HEIGHT,
-		0,
-		0,
-		windowClass.hInstance,
-		0
+		nullptr, nullptr, windowClass.hInstance, nullptr
 	);
 
 	ShowWindow(window, SW_SHOWDEFAULT);
@@ -272,12 +504,16 @@ void gui::CreateImGui() noexcept
 {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
-	ImGuiIO& io = ::ImGui::GetIO();
-
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;   
+	io.ConfigFlags |= ImGuiConfigFlags_NavEnableGamepad;  
+	io.ConfigFlags |= ImGuiViewportFlags_IsPlatformWindow;
 	io.IniFilename = NULL;
 
-	SetupImGuiStyle();
+	//SetupImGuiStyle();
+	ImGui::StyleColorsDark();
 
+	
 	ImGui_ImplWin32_Init(window);
 	ImGui_ImplDX9_Init(device);
 }
@@ -312,7 +548,7 @@ void gui::BeginRender() noexcept
 
 void gui::EndRender() noexcept
 {
-	ImGui::EndFrame();
+	
 
 	device->SetRenderState(D3DRS_ZENABLE, FALSE);
 	device->SetRenderState(D3DRS_ALPHABLENDENABLE, FALSE);
@@ -323,9 +559,11 @@ void gui::EndRender() noexcept
 	if (device->BeginScene() >= 0)
 	{
 		ImGui::Render();
+
 		ImGui_ImplDX9_RenderDrawData(ImGui::GetDrawData());
 		device->EndScene();
 	}
+	ImGui::EndFrame();
 
 	const auto result = device->Present(0, 0, 0, 0);
 
@@ -336,36 +574,13 @@ void gui::EndRender() noexcept
 
 void gui::Render() noexcept
 {
-
+	
 	ImGui::SetNextWindowPos({ 0, 0 });
 	ImGui::SetNextWindowSize({ WIDTH, HEIGHT });
-	ImGui::Begin(
-		"AlignCPP",
-		&isRunning,
-		ImGuiWindowFlags_NoResize |
-		ImGuiWindowFlags_NoSavedSettings |
-		ImGuiWindowFlags_NoCollapse |
-		ImGuiWindowFlags_NoMove |
-		ImGuiWindowFlags_MenuBar
-	);
-	if (ImGui::BeginMenuBar())
-	{
-		if (ImGui::BeginMenu("File"))
-		{
-			bool my_tool_active;
-			if (ImGui::MenuItem("Open ontolgy 1", "Ctrl+O+1")) {				
-			}
-			if (ImGui::MenuItem("Open ontolgy 2", "Ctrl+O+2")) {}
-			if (ImGui::MenuItem("Save", "Ctrl+S")) { /* Do stuff */ }
-			if (ImGui::MenuItem("Close", "Ctrl+W")) { isRunning = false; }
-			ImGui::EndMenu();
-		}
-		ImGui::EndMenuBar();
-	}
-
+	ImGuiIO& io = ImGui::GetIO(); (void)io;
+	OntologySelectionTool(&show_ontology_selection_window);
+	SimilarityCalculationTool(&show_calculation_tool_Menu);
 
 	
-
-	ImGui::End();
 }
 
